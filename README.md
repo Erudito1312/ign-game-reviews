@@ -31,4 +31,47 @@ After importing the dataset, I checked the first few rows using .head() to confi
 | 3     | Great        | NHL 13                  | Xbox 360        | 8.5   | Sports     | N              | 2012         |
 | 4     | Great        | NHL 13                  | PlayStation 3   | 8.5   | Sports     | N              | 2012         |
 
-Dataset has no null values.
+## Data cleaning
+- Verified that the dataset has no null values.
+- Checked for duplicates (`ign_data.duplicated().sum()`) and removed any potential ones with `ign_data = ign_data.drop_duplicates()`.
+- No additional cleaning was required.
+
+## Methods
+**Goal:** Find the best platform for each genre based on average IGN review scores.
+
+**Steps**
+1) Filtered to popular, contemporary platforms (PC, PlayStation family, Xbox family, major Nintendo consoles).
+2) Simplified genre -> main_genre by taking the first label before a comma (e.g., “Action, Adventure” -> “Action”).
+3) Kept the top 10 genres by review count to avoid noisy, low-sample categories.
+4) Aggregated mean scores for each (platform, main_genre) pair.
+5) Pivoted to a main_genre × platform matrix and plotted a heatmap.
+6) Selected the best platform per genre using column-wise maximum (and saved the table).
+   Note: Scores are shown to 1 decimal place; missing platform–genre combos appear blank.
+
+## Results
+**Heatmap — Average score by genre and platform**
+
+<img width="2207" height="1402" alt="avg_score_heatmap" src="https://github.com/user-attachments/assets/ab97013a-4a5d-4859-9f62-5a3239d4c1e9" />
+
+| Main Genre | Best Platform | Best Avg |
+|------------|---------------|----------|
+|Platformer  |PlayStation 4  | 8.5      |
+|Puzzle      |Xbox One       | 8.3      |
+|RPG         |Xbox           | 8.3      |
+|Strategy    |Xbox One       | 8.2      |
+|Shooter     |Nintendo 64    | 8.0      |
+|Racing      |Xbox One       | 8.0      |
+|Sports      |Xbox           | 7.9      |
+|Action      |PlayStation 4  | 7.7      |
+|Fighting    |PlayStation 3  | 7.6      |
+|Adventure   |PlayStation 4  | 7.4      |
+
+## Findings
+- Platformer titles reviewed highest on PlayStation 4 on average in this sample.
+- PC is absent from the top row for these 10 genres, which may reflect console exclusives and/or the genre mix kept in this slice.
+- Some classics inflate averages on legacy consoles (e.g., Nintendo 64 shooters).
+
+## Data quality
+- Genres were simplified to a single label, which can hide nuance from multi-genre titles.
+- Results reflect **IGN’s** scoring only.
+- Ties across platforms within a genre are broken by the first max encountered.
