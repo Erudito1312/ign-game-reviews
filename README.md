@@ -73,3 +73,6 @@ After importing the dataset, I checked the first few rows using .head() to confi
 - Genres were simplified to a single label, which can hide nuance from multi-genre titles.
 - Results reflect **IGN’s** scoring only.
 - Ties across platforms within a genre are broken by the first max encountered.
+
+See: outputs/best_platform_per_genre_top10.csv
+Data: IGN Games dataset (placed at data/ign.csv)
