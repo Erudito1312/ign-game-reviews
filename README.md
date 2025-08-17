@@ -6,8 +6,6 @@ The dataset used in this project is “IGN Games”, which contains over 18,000 
 The main goal of this project is to answer the question:
 Which platform is the best for each genre based on average review scores?
 
-In addition to identifying the best platform for each genre, I will also explore whether these preferences have remained consistent over time or if certain genres have shifted in popularity across platforms.
-
 ## Data inspection
 After importing the dataset, I checked the first few rows using .head() to confirm the structure. The dataset has the following columns:
 
